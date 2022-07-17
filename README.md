@@ -63,7 +63,7 @@ export default App;
 
 0717 3일 차
 
-css 적용하기.
+css 적용하기
 
 1. styled-components 방법.
   - 컴포넌트 파일 상단에서 import styled from "styled-components";를 해준다.
