@@ -125,6 +125,26 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
   0723 5일 차 내용
   
   [day05.txt](https://github.com/hyounji375/React/files/9174007/day05.txt)
+  
+  0725 5일 차 복습
+  
+  1. useState 
+    - const [color, setColor] = useState("red") 형식으로 사용한다.
+      const [변수명, 변수를 재할당해주는 함수명] = useState(변수의 기본값)이다.
+    - setColor("blue")를 해주면 color 변수의 값이 red에서 blue로 바뀐다.
+    - useState를 사용하기 위해서는 상단에 import { useState } from "react"를 해주어야 한다.
+  
+  2. map
+    - 객체 형식의 변수를 가져와서 반복되는 형식으로 뿌려줄 때 사용.
+    - const [color, setColor] = useState([{id : 1, name : "red"}, {id : 2, name : "blue"}, {id : 3, name : "yellow"}])
+      이런 식으로 변수에 객체가 있는 경우 이 객체의 길이만큼 반복할 때 사용.
+    - 변수명.map((객체를 담을 변수)=>(실행문))
+      ex) color.map((C) => console.log(`${C.id}번의 색상은 ${C.name}입니다.`)
+      => 1번의 색상은 red입니다.
+         2번의 색상은 blue입니다.
+         3번의 색상은 yellow입니다.
+  
+    * 화살표 함수를 해준 뒤 {}가 아닌 ()를 써야한다!
 
 --------------------------------------------------------------------------------------------------------------------------------------------
   
