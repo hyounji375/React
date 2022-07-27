@@ -180,3 +180,24 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
   0724 6일 차 내용
   
   [day05.txt](https://github.com/hyounji375/React/files/9191010/day05.txt)
+  
+  0727 6일 차 코드 복습
+  
+  초기화 버튼의 함수를 만들 때 왜 useRef를 썼는지 기억이 안 나서 다시 영상을 보니 그냥 돔 객체에 접근하는 방법을 가르쳐주기 위해서라고 하셨다.
+  current를 써서 돔 객체에 접근할 수가 있다.
+  
+  초기화 버튼에 reset 함수를 만들어주고 reset 함수 안에 setColor("") 이것만 넣어주면 입력칸에 글자를 썼다가 초기화 버튼을 누르면 글자가 사라진다.
+  
+  그 다음으로 해준 게 focus이다.
+  값을 초기화하면 입력칸의 포커스가 사라진다. 값을 다시 입력하기 위해서는 마우스로 클릭해줘야 하는 번거로움이 있다. 그래서 값을 초기화해도 그대로 커서가 있도록 focus 함수를 넣어줬다.
+  focus()를 쓰기 위해서는 돔 객체에 접근해야 하는데 이를 위해 useRef를 쓴 것 같다.
+  focus 되는 게 input 태그니까 여기에 ref 속성에 nameInput이라는 값을 주고 이 nameInput을 useRef(null)로 선언해준다.
+  초기화 버튼을 누른 후에도 포커스가 되게 해줄 거니까 reset 함수에 nameInput.current.focus();를 써주면 된다.
+  
+  값을 추가할 때 엔터키를 눌러도 추가되게끔 해줬다.
+  버튼을 누르는 게 아니고 엔터를 누르는 것이기 때문에 input 태그에 onKeyPress 속성을 주고 값에 함수를 AddEnter라고 넣어줬다.
+  AddEnter 함수에서는 자기 자신을 매개변수로 가져와야 하므로 e를 써서 가져오고 if문을 작성해줬다.
+  이때 console.log(e)를 찍어보면 key : "Enter"라고 나와있다. 그래서 이 key의 값이 Enter와 일치하면 값을 추가해주는 함수였던 onClick(stateNum +1, name)이 작동되도록 하면 된다.
+  그리고 입력이 되면 다시 setColor("")를 써서 입력칸을 초기화해준다.
+  
+  
