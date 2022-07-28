@@ -1,11 +1,14 @@
 import State from "../components/state";
 import Map from "../components/map";
-import Add from "../components/add";
+import Memo from "../components/memo";
+import Callback from "../components/callback";
 const Hooks = () => {
   return (
     <>
       <State />
       <Map />
+      <Memo />
+      <Callback />
     </>
   );
 };
