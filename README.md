@@ -209,3 +209,33 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
   
   세 번째는 첫 번째 방식과 똑같은데 매개변수를 받는 방식이 다르다. 첫 번째는 자기 자신을 매개변수로 해서 e를 썼는데 세 번째 방식은 매개변수를 받아온다. 그래서 실행문이 첫 번째와는 다르다.
   첫 번째는 삭제 버튼에 그냥 onClick={실행할 함수명} 이렇게 적어줬는데 세 번째는 onClick={()=>함수명(매개변수)} 이렇게 적어줬다.
+  
+  0728 6일 차 내용 복습
+  
+  1. useMemo : 연산된 값을 반환하여 랜더링 되었을 때 재사용할 수 있도록 해주는 Hooks 함수
+  2. useCallback : 특정 함수를 새로 만들지 않고 랜더링 되었을 때 재사용할 수 있도록 해주는 Hooks 함수
+  3. 메모이제이션 : 동일한 계산을 반복해야 할 때 이전에 계산된 값을 메모리에 저장함으로써 동일한 계산의 반복 수행을 제거하여 프로그램이 최적화되도록 하는 것.
+  => 값이 바뀌지 않으면 랜더링을 하지 않는다.
+  
+  코드 복습
+  
+  const [color, setColor] = useState("green");
+  const [text, setText] = useState("");
+
+  const getColor = useMemo(() => console.log(`색은 ${color}입니다.`), [color]);
+  const getText = useMemo(
+    () => console.log(`텍스트는 실행하지 않습니다.`),
+    [text]
+  );
+
+  const changeColor = () => {
+    if (color === "green") {
+      setColor("pink");
+    } else {
+      setColor("green");
+    }
+  };
+  
+  이렇게 하면 변경 버튼을 누를 때마다 changeColor 함수가 작동하므로 색이 그린에서 핑크로, 핑크에서 그린으로 바뀐다. 값이 바뀌기 때문에 랜더링이 되어 콘솔로그도 계속 찍힌다.
+  그런데 텍스트는 setText를 사용하지 않았기 때문에 값에 변경이 없다. 그리고 useMemo를 사용했기 때문에 getText 함수는 실행되지 않는다. 따라서 맨 처음 딱 한 번만 찍히고 그 이후로는 찍히지 않는다.
+  
