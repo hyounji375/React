@@ -13,7 +13,7 @@ const Callback = () => {
     <>
       <div>useCallback</div>
       <input type="text" readOnly value={color} style={{ color }} />
-      <button onClick={Change}>콜백 변경</button>
+      <button onClick={Change}>useCallback 변경</button>
     </>
   );
 };

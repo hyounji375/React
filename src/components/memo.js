@@ -21,7 +21,7 @@ const Memo = () => {
     <>
       <div>Memo</div>
       <input type="text" readOnly value={color} style={{ color }} />
-      <button onClick={changeColor}>변경</button>
+      <button onClick={changeColor}>useMemo 변경</button>
     </>
   );
 };
