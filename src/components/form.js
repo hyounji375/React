@@ -39,7 +39,7 @@ const Form = ({ onAdd, id }) => {
         onChange={onChangeTodo}
         onKeyPress={keypress}
       />
-      <button onClick={addWork}>추가</button>
+      <button onClick={addWork}>목록 추가</button>
       <button onClick={reset}>초기화</button>
     </>
   );

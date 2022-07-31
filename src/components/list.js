@@ -8,7 +8,7 @@ const List = ({ state, RemoveWork }) => {
   return (
     <div>
       {state.id}. {state.work}
-      <button onClick={onRemoveWork}>완료</button>
+      <button onClick={onRemoveWork}>할 일 완료</button>
     </div>
   );
 };
