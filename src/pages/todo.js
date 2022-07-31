@@ -15,7 +15,7 @@ const Todo = () => {
     },
     {
       id: 3,
-      work: "todolist 만드는 연습하기",
+      work: "todolist 연습하기",
     },
   ]);
 
