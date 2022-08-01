@@ -257,6 +257,37 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
     - 의존성 배열 부분이 비어있으면 처음 화면이 랜더링될 때만 실행, 의존성 배열에 값이 있으면 값이 바뀔 때마다 실행.
   
   2. todolist 한 번 더 만들어 봤다.
+  
+  0801 7일 차 내용 복습
+  
+  1. useReducer
+    - 상태를 변화시키는 로직을 하나 만든다. 이 로직은 매개변수로 state와 action을 받는다.
+      export const reducer = function reducer(state, action) {
+  switch (action.type) {
+    case "INCREMENT":
+      return state + 1;
+    case "DECREMENT":
+      return state - 1;
+    default:
+      return state;
+  }
+};
+    - const Reducer = () => {
+       const initialState = 0;
+       const [number, dispatch] = useReducer(reducer, initialState)};
+      이렇게 있으면 reducer는 아까 만든 로직. 그러면 initialState가 이 로직으로 전달되어서 state 값으로 간다.
+      그리고 dispatch는 action을 전달하는 매개체이다.
+      useReducer로 인해서 변수 initialState는 state화 된다.
+      useReducer는 reducer와 initialState를 매개변수로 받아서 number와 dispatch를 반환.
+    -   const onIncrement = useCallback(() => {
+    dispatch({
+      type: "INCREMENT",
+    });
+  }, []);
+  
+      이런 식으로 dispatch 함수를 써서 로직의 action.type값을 전달해준다.
+  
+  
   --------------------------------------------------------------------------------------------------------------------------------------------
   
   0731 8일 차
