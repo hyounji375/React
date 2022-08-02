@@ -15,12 +15,15 @@ const AddState = () => {
   const onAddState = useCallback(() => {
     dispatch({
       type: ADD_STATE,
-      id: state[state.length - 1].id + 1,
+      id: state.length > 0 && state[state.length - 1].id + 1,
       name: name,
     });
     setName("");
   }, [state, name, dispatch]);
 
+  const Reset = useCallback(() => {
+    setName("");
+  }, []);
   return (
     <>
       <input
@@ -30,7 +33,7 @@ const AddState = () => {
         onChange={onChangeInput}
       />
       <button onClick={onAddState}>추가</button>
-      <button>초기화</button>
+      <button onClick={Reset}>초기화</button>
     </>
   );
 };
