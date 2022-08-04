@@ -299,3 +299,12 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
   
   [day08.txt](https://github.com/hyounji375/React/files/9228792/day08.txt)
 
+  0804 8일 차 내용 복습
+  
+  1. redux 
+    - 전역 상태 관리를 위한 라이브러리.
+    - 사용하기 위해서는 react-redux, redux, redux-devtools-extension 이 3가지를 설치해줘야 한다.
+  
+  녹화본을 보면서 다시 이해하며 따라 만들었는데 이해는 가는데 잘 모르겠는 느낌??
+  그러니까 강의에서 쓴 코드가 어떤 흐름으로 동작하는지는 알겠는데... 음..알겠는데 잘 모르겠다
+  todolist 다시 만들어 보고 redux를 이용해서 또 만들어 보고 반복해봐야겠다.
