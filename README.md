@@ -314,6 +314,39 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
   0806 9일 차
   
   퍼블리싱된 html과 css를 리액트로 옮기면서 컴포넌트화 함.
+  
+  0808 9일 차 수업 복습
+  
+  1. ThemeProvider
+    - 웹페이지에서 쓰이는 메인 색상과 서브 색상을 전역 상태로 만들어서 사용.
+    - export const theme = {
+             mainColor: "#00c7ae",
+             subColor: "#ffffff",
+             };
+     이런 식으로 export를 해주고 
+     index.js에서 ThemeProvider와 theme를 import를 해준다.
+     <ThemeProvider theme={theme}>
+       <App />
+     </ThemeProvider>
+     이렇게 하면 App 태그에 색상이 적용되어 전체적인 색상을 설정할 수 있다.
+  
+  2. children
+    - const MyBlogLayout = ({ children }) => {
+       return (
+        <>
+          <LayOutHeader />
+            {children}
+          <LayOutFooter />
+        </>
+  );
+};
+  이렇게 한 후에 다른 컴포넌트나 app.js에서 MyBlogLayout을 사용하면 <MyBlogLayout></MyBlogLayout> 안에 있는 자식 컴포넌트들을 가지고 올 수 있다.
+  그러면 위의 return에서 {children} 자리에 아까 가지고 온 자식 컴포넌트들이 들어간다.
+  
+  3. console.log(process.env.NODE_ENV);
+    - 개발용인지 배포용인지 알아볼 수 있는 리액트 자체 지원 기능.
+    -  npm start => development, npm build => production
+ 
   --------------------------------------------------------------------------------------------------------------------------------------------
   
   0807 10일 차
