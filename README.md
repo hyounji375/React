@@ -360,3 +360,6 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
       그래서 react-router-dom의 Link 태그를 대신 사용한다. 
       기능은 a 태그와 비슷하며 to는 a 태그의 href 역할이다.
       f12로 개발자 도구에서 보면 Link 태그지만 a 태그로 나온다.
+  
+  2. autoComplete="off"
+    - 텍스트를 기억해서 글자가 자동 완성되는 기능을 끄는 속성.
