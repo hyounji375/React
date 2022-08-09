@@ -359,3 +359,4 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
     - 리액트에서는 주소 이동이 아니라 페이지를 변경시켜서 보여주는 방식이기 때문에 a 태그를 쓸 수 없다.
       그래서 react-router-dom의 Link 태그를 대신 사용한다. 
       기능은 a 태그와 비슷하며 to는 a 태그의 href 역할이다.
+      f12로 개발자 도구에서 보면 Link 태그지만 a 태그로 나온다.
