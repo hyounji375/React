@@ -352,3 +352,10 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
   0807 10일 차
   
   [day10.txt](https://github.com/hyounji375/React/files/9276991/day10.txt)
+  
+  0809 10일 차 내용 복습
+  
+  1. <Link to="/login">로그인</Link>
+    - 리액트에서는 주소 이동이 아니라 페이지를 변경시켜서 보여주는 방식이기 때문에 a 태그를 쓸 수 없다.
+      그래서 react-router-dom의 Link 태그를 대신 사용한다. 
+      기능은 a 태그와 비슷하며 to는 a 태그의 href 역할이다.
