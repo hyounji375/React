@@ -366,8 +366,8 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
 
   0810 10일 차 내용 복습
   
-  비밀번호 일치 불일치 확인하기
-  1. useRef 이용
+  1. 비밀번호 일치 불일치 확인하기
+   1) useRef 이용
     - const password = useRef("");
       const confirmPassword = useRef(""); 를 하고 각각의 input 태그에 ref={password}, ref={confirmPassword}로 속성을 넣어준다.
       그리고 const [resultPw, setResultPw] = useState(false);도 만들어준다.
@@ -383,3 +383,47 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
     - 마지막으로 {resultPw && <p>비밀번호가 일치하지 않습니다.</p>} 이렇게 적어주면 된다.
     => resultPw가 true면 비밀번호가 일치하지 않는다는 뜻이므로 위의 p태그가 나타나고 만약 false면 비밀번호가 일치하는 것이니까 회원가입 성공이 콘솔로그에 찍힌다.
   
+   2) useInput 이용
+    - 커스텀 훅 중 하나인 useInput.
+      export const useInput = (initialValue = null) => {
+      const [value, setValue] = useState(initialValue);
+
+      const handler = useCallback((e) => {
+       setValue(e.target.value);
+      }, []);
+      return [value, handler, setValue];
+     };
+    - 이렇게 export 한 useInput을 다른 컴포넌트에서 import 해서 사용할 수 있다.
+    - const [password, onChangePassword, setPassword] = useInput(""); 이렇게 배열로 useInput을 가지고 온다.
+      value 자리에는 password, handler 자리에는 onChangePassword가 setValue 자리에는 setPassword가 들어간다.
+    - const [confirmPassword, setConfirmPassword] = useState("");
+       //비밀번호 한 번 더 입력하는 값
+      const [passCheck, setPassCheck] = useState(false);
+  
+  const onConfirmPassword = useCallback(
+    (e) => {
+      setConfirmPassword(e.target.value); //비밀번호 확인칸에 입력한 값
+      setPassCheck(e.target.value !== password);
+      //비밀번호 확인칸에 입력한 값과 비밀번호 칸의 값이 일치하지 않으면 true
+    },
+    [password]
+  );
+  
+  const onRegistHandler = useCallback(
+    (e) => {
+      if (passCheck) {
+        if (!alert("비밀번호가 일치하지 않습니다.")) {
+          setConfirmPassword("");
+        }
+        return;
+      }
+      console.log("회원가입 완료");
+    },
+    [passCheck]
+  );
+  // passCheck가 true면 비밀번호가 일치하지 않는다는 것. 일치하지 않으므로 alert 창을 띄워서 확인하게 한 후 확인 버튼을 누르면 setConfirmPassword("")가 실행되어 비밀번호 확인칸이 리셋된다. 그리고 passCheck가 false면 비밀번호가 일치하므로 회원가입 완료가 콘솔에 찍힌다.
+  - {passCheck && confirmPassword && (<CheckMessage>비밀번호가 일치하지 않습니다</CheckMessage>)}
+     passCheck가 true고(일치하지 않음) confirmPassword의 값이 있으면 체크메시지가 나타난다.
+  
+  2.  e.preventDefault();
+    - form 자체의 기본 기능을 막는다. 즉, 버튼의 기능을 막아서 submit이 안 되게 해준다.
