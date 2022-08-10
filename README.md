@@ -363,3 +363,23 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
   
   2. autoComplete="off"
     - 텍스트를 기억해서 글자가 자동 완성되는 기능을 끄는 속성.
+
+  0810 10일 차 내용 복습
+  
+  비밀번호 일치 불일치 확인하기
+  1. useRef 이용
+    - const password = useRef("");
+      const confirmPassword = useRef(""); 를 하고 각각의 input 태그에 ref={password}, ref={confirmPassword}로 속성을 넣어준다.
+      그리고 const [resultPw, setResultPw] = useState(false);도 만들어준다.
+    - onRegistHandler = useCallback(() => {
+        if(password.current.value !== confirmPassword.current.value){
+            setResultPw(true);
+              return;
+       } else { console.log("회원가입 성공");
+        }
+       }, []);
+     함수도 하나 만들어준다.
+    - 함수 onRegistHandler는 가입하기 버튼에 연결해준다.
+    - 마지막으로 {resultPw && <p>비밀번호가 일치하지 않습니다.</p>} 이렇게 적어주면 된다.
+    => resultPw가 true면 비밀번호가 일치하지 않는다는 뜻이므로 위의 p태그가 나타나고 만약 false면 비밀번호가 일치하는 것이니까 회원가입 성공이 콘솔로그에 찍힌다.
+  
