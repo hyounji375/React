@@ -427,3 +427,80 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
   
   2.  e.preventDefault();
     - form 자체의 기본 기능을 막는다. 즉, 버튼의 기능을 막아서 submit이 안 되게 해준다.
+  
+  0811 10일 차 내용 복습
+  
+  1. redux saga 세팅 방법
+    - src 폴더 안에 reducer, saga, store 폴더를 만든다.
+    - reducer에 index.js를 만들어서 rootReducer를 만들어준다.
+  
+      import { combineReducers } from "redux";
+
+      const rootReducer = combineReducers({});
+
+      export default rootReducer;
+  
+    - saga 폴더에 index.js를 만들어서 rootSaga를 만들어 export 해준다.
+  
+      import { all } from "redux-saga/effects";
+
+      export default function* rootSaga() {
+        yield all([]);
+      }
+      *은 제너레이터, 즉 yield를 사용하기 위해 붙여준 것이다. yield는 제너레이터 함수이며 기능은 await와 같다. 이걸 실행하고 그다음 로직을 실행하라는 의미.
+      제너레이터란 yield와 같이 비동기 처리를 동기적으로 처리할 수 있는 파이썬의 기능이다.
+      all은 redux saga에 있는 일종의 기능이자 함수이다. all([])의 [] 안에는 saga 로직들이 들어가는데 그것들을 다 선택하겠다는 의미로 combinereducer의 역할이라고 생각하면 된다.
+  
+  - store 폴더에서 index.js를 만들어서 세팅을 하면 된다.
+    세팅법이 복잡하고 길어서 store 폴더를 따로 만든 것이다.
+  
+      import { applyMiddleware, createStore } from "redux";
+      import { createLogger } from "redux-logger";
+      import rootReducer from "../reducer/_index";
+      import { composeWithDevTools } from "redux-devtools-extension";
+      import createSagaMiddleware from "@redux-saga/core";
+      import rootSaga from "../saga/_index";
+
+      const logger = createLogger();
+      //리덕스의 실행 콘솔을 찍어주는 미들웨어를 사용하고 변수에 담아줌. createLogger의 리턴값을 담아주는 것.
+
+      const sagaMiddleware = createSagaMiddleware();
+      //리덕스 사가를 실행하기 위해 변수에 담아준 것.
+
+      const createConfigure = () => {
+       const store = createStore(
+         rootReducer,
+          process.env.NODE_ENV === "development"
+           ? composeWithDevTools(applyMiddleware(logger, sagaMiddleware))
+           : applyMiddleware(sagaMiddleware)
+        );
+        //개발 환경일 때는 데브툴즈, 로거 포함. 개발환경이 아닐 때는 사가만 포함.
+
+        sagaMiddleware.run(rootSaga);
+        //사가를 실행하기 위한 함수. createStore를 실행할 경우 적용하기 위해 함수 안에 삽입.
+        return store;
+       //설정값을 리턴.
+      };
+      //store를 리턴으로 받기 위한 함수.
+
+      export default createConfigure;
+
+    - 마지막으로 index.js에서 Provider로 감싸주면 된다.
+  
+      import React from "react";
+      import ReactDOM from "react-dom/client";
+      import "./index.css";
+      import App from "./App";
+      import createConfigure from "./store/store";
+      import { Provider } from "react-redux";
+
+      const store = createConfigure();
+      //saga 실행 함수
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(
+        <Provider store={store}>
+         <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        </Provider>
+      );
