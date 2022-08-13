@@ -504,3 +504,11 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
           </React.StrictMode>
         </Provider>
       );
+  
+  --------------------------------------------------------------------------------------------------------------------------------------------
+  
+  0813 11일 차 리액트 마지막 수업
+  
+  [day10.txt](https://github.com/hyounji375/React/files/9331643/day10.txt)
+
+  
