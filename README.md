@@ -511,4 +511,10 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
   
   [day10.txt](https://github.com/hyounji375/React/files/9331643/day10.txt)
 
+  0815 11일 차 복습
   
+  1. immer
+    - state의 불변성을 지켜주는 라이브러리.
+    - ...을 사용해서 복사할 필요가 없다.
+    - npm i immer
+            
