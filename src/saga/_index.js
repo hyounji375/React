@@ -1,7 +1,8 @@
-import { all } from "redux-saga/effects";
+import { all, fork } from "redux-saga/effects";
+import userSaga from "./userSaga";
 
 export default function* rootSaga() {
-  yield all([]);
+  yield all([fork(userSaga)]);
 }
 
 //*은 제너레이터를 사용하기 위해 붙여준 것. yield를 사용하기 위해 붙임.

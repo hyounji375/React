@@ -2,16 +2,27 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { useInput } from "../../hooks/useinput";
 import { useCallback } from "react";
+import { LOGIN_IN_REQUEST } from "../../reducer/userReducer";
+import { useDispatch } from "react-redux";
 
 const LoginMain = () => {
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
+  const dispatch = useDispatch();
 
   const onLoginHandler = useCallback(
     (e) => {
       e.preventDefault();
       console.log(email);
       console.log(password);
+      dispatch({
+        type: LOGIN_IN_REQUEST,
+        //이게 이제 reducer랑 saga에 전달.
+        data: {
+          email: email,
+          password: password,
+        },
+      });
     },
     [email, password]
   );
