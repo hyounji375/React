@@ -521,3 +521,13 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
   2. faker-js/faker
     - 더미데이터를 만들어서 마치 백엔드에서 데이터를 받아오는 것처럼 만들어주는 라이브러리.
     - npm i @faker-js/faker
+  
+  3. useEffect
+    -  useEffect(() => {
+    if (!editPost) {
+      console.log("참");
+    }
+    return () => console.log("닫힘");
+  }, [editPost]);
+  => 처음에 "참", "닫힘" 둘 다 콘솔로그에 찍히고 메인 페이지에서 다른 페이지로 이동하면 "닫힘"만 또 찍힌다.
+     즉, 해당 컴포넌트에서 나가면 return에 적어준 내용이 실행된다.
