@@ -518,3 +518,6 @@ app.js에서 각 페이지를 import 해주고 import { BrowserRouter, Route, Ro
     - ...을 사용해서 복사할 필요가 없다.
     - npm i immer
             
+  2. faker-js/faker
+    - 더미데이터를 만들어서 마치 백엔드에서 데이터를 받아오는 것처럼 만들어주는 라이브러리.
+    - npm i @faker-js/faker
